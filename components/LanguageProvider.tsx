@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { languages, type LanguageCode } from '@/lib/i18n';
 
-const STORAGE_KEY = 'kasipker-language';
+const STORAGE_KEY = 'azyq-language';
 
 type LanguageContextValue = {
   language: LanguageCode;
@@ -13,7 +13,7 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<LanguageCode>('ru');
+  const [language, setLanguageState] = useState<LanguageCode>('kk');
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? window.localStorage.getItem(STORAGE_KEY) : null;

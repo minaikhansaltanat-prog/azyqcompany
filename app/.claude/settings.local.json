@@ -3,7 +3,19 @@
     "allow": [
       "Bash(ls c:/Users/acer/Site-1/)",
       "Read(//c/Users/acer/Site-1/**)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npx --yes localtunnel --port 3000)",
+      "Bash(npx --yes localtunnel --port 3002)",
+      "Bash(npx localtunnel *)",
+      "Read(//tmp/**)",
+      "Bash(node -e ' *)",
+      "Bash(where ngrok *)",
+      "Bash(where cloudflared *)",
+      "Bash(cmd /c \"npx --yes localtunnel --port 3002\")",
+      "Bash(jobs)",
+      "Bash(cmd /c \"npx --yes localtunnel --port 3000 > C:\\\\Users\\\\acer\\\\lt_url.txt 2>&1\")",
+      "Read(//c/Users/acer/**)",
+      "Bash(echo \"EXIT:$?\")"
     ]
   }
 }
