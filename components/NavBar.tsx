@@ -36,7 +36,7 @@ export function NavBar() {
             : 'bg-white/80 backdrop-blur-sm'
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 md:px-8 md:py-3">
           {/* Logo */}
           <a href="#" className="flex items-center flex-shrink-0">
             <Image
@@ -44,7 +44,7 @@ export function NavBar() {
               alt="AZYQ"
               width={400}
               height={400}
-              style={{ height: '92px', width: '92px', objectFit: 'contain' }}
+              className="h-14 w-14 object-contain lg:h-[92px] lg:w-[92px]"
               priority
             />
           </a>
@@ -86,7 +86,7 @@ export function NavBar() {
               href="https://wa.me/77053271591"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden btn-primary text-xs px-4 py-2.5 sm:inline-flex"
+              className="hidden btn-primary text-xs px-4 py-2.5 lg:inline-flex"
             >
               {t.nav.ctaPrimary}
             </a>
@@ -140,7 +140,7 @@ export function NavBar() {
       </header>
 
       {/* Spacer */}
-      <div className="h-[92px]" />
+      <div className="h-[60px] lg:h-[92px]" />
     </>
   );
 }

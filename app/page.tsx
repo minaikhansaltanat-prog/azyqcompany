@@ -766,30 +766,32 @@ export default function Home() {
             viewport={{ once: true }}
             custom={0.2}
             variants={fadeUp}
-            className="mb-10 flex justify-center"
+            className="mb-10 flex justify-center px-2"
           >
-            <div className="inline-flex rounded-2xl bg-white p-1.5 shadow-card gap-1">
-              {(
-                [
-                  { key: 'video', icon: '🎥', label: t.testimonials.tabVideo },
-                  { key: 'written', icon: '✍️', label: t.testimonials.tabWritten },
-                  { key: 'audio', icon: '🎤', label: t.testimonials.tabAudio },
-                  { key: '2gis', icon: '📍', label: '2GIS' },
-                ] as const
-              ).map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setTestimonialsTab(tab.key)}
-                  className={`flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition-all duration-200 ${
-                    testimonialsTab === tab.key
-                      ? 'bg-brand-green text-white shadow-green scale-[1.02]'
-                      : 'text-brand-gray hover:text-brand-dark hover:bg-brand-green-light'
-                  }`}
-                >
-                  <span>{tab.icon}</span>
-                  {tab.label}
-                </button>
-              ))}
+            <div className="w-full overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="inline-flex min-w-max rounded-2xl bg-white p-1.5 shadow-card gap-1 mx-auto">
+                {(
+                  [
+                    { key: 'video', icon: '🎥', label: t.testimonials.tabVideo },
+                    { key: 'written', icon: '✍️', label: t.testimonials.tabWritten },
+                    { key: 'audio', icon: '🎤', label: t.testimonials.tabAudio },
+                    { key: '2gis', icon: '📍', label: '2GIS' },
+                  ] as const
+                ).map((tab) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => setTestimonialsTab(tab.key)}
+                    className={`flex items-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold transition-all duration-200 whitespace-nowrap sm:gap-2 sm:px-5 sm:py-3 sm:text-sm ${
+                      testimonialsTab === tab.key
+                        ? 'bg-brand-green text-white shadow-green scale-[1.02]'
+                        : 'text-brand-gray hover:text-brand-dark hover:bg-brand-green-light'
+                    }`}
+                  >
+                    <span>{tab.icon}</span>
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
 
