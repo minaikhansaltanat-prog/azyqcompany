@@ -1,5 +1,5 @@
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
-const repoName = 'kasipker';
+const repoName = 'azyqcompany';
 
 const nextConfig = {
   reactStrictMode: true,
