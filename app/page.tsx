@@ -25,6 +25,30 @@ const fadeIn = {
   }),
 };
 
+const PARTNERS = [
+  { name: 'Умка',              url: 'https://2gis.kz/almaty/geo/9429940001035352',                          color: '#5BBF3A', bg: '#EFF9E8', letter: 'У'  },
+  { name: 'Жансая-Сәт',       url: 'https://2gis.kz/almaty/geo/70000001081317293/76.987365,43.352990',     color: '#D84040', bg: '#FEECEC', letter: 'Ж'  },
+  { name: 'Адеми',             url: 'https://2gis.kz/almaty/geo/9429940000791569',                          color: '#F59E0B', bg: '#FEF3C7', letter: 'А'  },
+  { name: 'Күншуақ',           url: 'https://2gis.kz/almaty/geo/9429940000845758',                          color: '#F97316', bg: '#FFF0E6', letter: 'К'  },
+  { name: 'Алгабас 2',         url: 'https://2gis.kz/almaty/geo/70000001033934166',                         color: '#8B5CF6', bg: '#F3EFFE', letter: 'А₂' },
+  { name: 'Алгабас',           url: 'https://2gis.kz/almaty/geo/70000001054519291',                         color: '#3B82F6', bg: '#EFF6FF', letter: 'А'  },
+  { name: 'Изумрудный город',  url: 'https://2gis.kz/almaty/geo/70000001062741292',                         color: '#14B8A6', bg: '#F0FDFA', letter: 'И'  },
+  { name: 'Мир детства',       url: 'https://2gis.kz/almaty/geo/70000001030058930',                         color: '#EC4899', bg: '#FDF2F8', letter: 'М'  },
+  { name: 'Микитоша',          url: 'https://2gis.kz/almaty/geo/70000001031475420/76.850827,43.271614',     color: '#6366F1', bg: '#EEF2FF', letter: 'М'  },
+  { name: 'Дамира',            url: 'https://2gis.kz/almaty/geo/70000001020369904/76.839872,43.276343',     color: '#D84040', bg: '#FEECEC', letter: 'Д'  },
+  { name: 'Гармония',          url: 'https://2gis.kz/almaty/geo/9429940000928950/76.973941,43.216807',      color: '#5BBF3A', bg: '#EFF9E8', letter: 'Г'  },
+  { name: 'Солнечные лучи',    url: 'https://2gis.kz/almaty/geo/9429940001308947/76.969255,43.252131',      color: '#F59E0B', bg: '#FEF3C7', letter: 'С'  },
+  { name: 'Ордоген',           url: 'https://2gis.kz/almaty/geo/70000001056446663/77.021807,43.291633',     color: '#3B82F6', bg: '#EFF6FF', letter: 'О'  },
+  { name: 'Султанкурган',      url: 'https://2gis.kz/almaty/geo/9429940000800824/76.927058,43.316355',      color: '#8B5CF6', bg: '#F3EFFE', letter: 'С'  },
+  { name: 'Вдохновение',       url: 'https://2gis.kz/almaty/geo/70000001034423627/76.952503,43.347403',     color: '#EC4899', bg: '#FDF2F8', letter: 'В'  },
+  { name: 'Солнечные зайки',   url: 'https://2gis.kz/almaty/geo/70000001037283188',                         color: '#F97316', bg: '#FFF0E6', letter: 'С'  },
+  { name: 'Мади Kids',         url: 'https://2gis.kz/almaty/geo/70000001043831325/76.981011,43.252276',     color: '#14B8A6', bg: '#F0FDFA', letter: 'М'  },
+  { name: 'Римон',             url: 'https://2gis.kz/almaty/geo/70000001031499970',                         color: '#6366F1', bg: '#EEF2FF', letter: 'Р'  },
+  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001089006317/76.799492,43.237209',     color: '#5BBF3A', bg: '#EFF9E8', letter: 'С'  },
+  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001023174402/76.789244,43.240576',     color: '#D84040', bg: '#FEECEC', letter: 'С'  },
+  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001033941325/76.785360,43.243263',     color: '#F59E0B', bg: '#FEF3C7', letter: 'С'  },
+] as const;
+
 const KUNSHUAK_REVIEW = `С компанией-поставщиком продуктов питания сотрудничаем уже более 5 лет. За время работы зарекомендовали себя как надёжный и ответственный партнёр.
 
 Поставки в наш детский сад осуществляются своевременно, без срывов и задержек. Качество продукции соответствует заявленным требованиям. При возникновении замечаний сотрудники компании оперативно реагируют, внимательно относятся к обратной связи и при необходимости без проблем производят замену товара.`;
@@ -706,38 +730,43 @@ export default function Home() {
             </motion.p>
           </div>
 
-          {/* Partner logos placeholder grid */}
-          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <motion.div
+          {/* Partner cards grid */}
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
+            {PARTNERS.map((p, i) => (
+              <motion.a
                 key={i}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                custom={i * 0.05}
+                custom={i * 0.03}
                 variants={fadeIn}
-                className="flex h-20 items-center justify-center rounded-2xl border-2 border-dashed border-brand-border bg-brand-bg-alt p-3"
+                className="group flex flex-col items-center gap-2.5 rounded-2xl border border-brand-border bg-white p-3 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-card"
+                style={{ ['--hover-color' as string]: p.color }}
               >
-                <div className="flex flex-col items-center gap-1">
-                  <div className="h-8 w-8 rounded-full bg-brand-green-light flex items-center justify-center">
-                    <span className="text-lg">🏫</span>
-                  </div>
-                  <span className="text-[10px] font-bold text-brand-muted">Балабақша</span>
+                {/* Avatar */}
+                <div
+                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-base font-black text-white shadow-sm transition-transform duration-200 group-hover:scale-105"
+                  style={{ backgroundColor: p.color }}
+                >
+                  {p.letter}
                 </div>
-              </motion.div>
+                {/* Name */}
+                <p className="text-[11px] font-bold leading-tight text-brand-dark line-clamp-2">
+                  {p.name}
+                </p>
+                {/* 2GIS badge */}
+                <span
+                  className="mt-auto rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wide uppercase transition-colors duration-200"
+                  style={{ color: p.color, backgroundColor: p.bg }}
+                >
+                  2GIS ↗
+                </span>
+              </motion.a>
             ))}
           </div>
-
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={0.3}
-            variants={fadeIn}
-            className="mt-6 text-center text-sm text-brand-muted"
-          >
-            * Серіктестер логотиптері жаңартылуда
-          </motion.p>
         </div>
       </section>
 
