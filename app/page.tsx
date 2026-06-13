@@ -189,11 +189,11 @@ export default function Home() {
               <div className="absolute inset-0 rounded-4xl bg-brand-green-light" style={{ transform: 'rotate(-3deg)' }} />
               <div className="relative overflow-hidden rounded-4xl">
                 <Image
-                  src="/images/dostavka.png"
+                  src="/images/kk.png"
                   alt="AZYQ жеткізу"
-                  width={1254}
-                  height={1254}
-                  className="h-auto w-full object-cover"
+                  width={1402}
+                  height={1122}
+                  className="h-auto w-full object-cover object-center"
                   priority
                 />
               </div>
@@ -217,16 +217,16 @@ export default function Home() {
         </div>
 
         {/* Mobile hero image */}
-        <div className="relative mt-8 block lg:hidden">
+        <div className="relative mt-6 block lg:hidden overflow-hidden rounded-2xl mx-4">
           <Image
-            src="/images/dostavka.png"
+            src="/images/kk.png"
             alt="AZYQ жеткізу"
-            width={600}
-            height={400}
-            className="h-64 w-full object-cover"
+            width={1402}
+            height={1122}
+            className="h-72 w-full object-cover object-top"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
         </div>
       </section>
 
