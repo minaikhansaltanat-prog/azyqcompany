@@ -29,7 +29,7 @@ type Partner = { name: string; url: string; color: string; bg: string; letter: s
 
 const PARTNERS: Partner[] = [
   { name: 'Умка',              url: 'https://2gis.kz/almaty/geo/9429940001035352',                          color: '#5BBF3A', bg: '#EFF9E8', letter: 'У',  logo: '/images/sadiks/umka.jpg'       },
-  { name: 'Жансая-Сәт',       url: 'https://2gis.kz/almaty/geo/70000001081317293/76.987365,43.352990',     color: '#D84040', bg: '#FEECEC', letter: 'Ж'                                          },
+  { name: 'Жансая-Сәт',       url: 'https://2gis.kz/almaty/geo/70000001081317293/76.987365,43.352990',     color: '#D84040', bg: '#FEECEC', letter: 'Ж',  logo: '/images/sadiks/zhansaya.png'   },
   { name: 'Адеми',             url: 'https://2gis.kz/almaty/geo/9429940000791569',                          color: '#F59E0B', bg: '#FEF3C7', letter: 'А',  logo: '/images/sadiks/ademi.png'      },
   { name: 'Күншуақ',           url: 'https://2gis.kz/almaty/geo/9429940000845758',                          color: '#F97316', bg: '#FFF0E6', letter: 'К',  logo: '/images/sadiks/kunshuak.png'   },
   { name: 'Алгабас 2',         url: 'https://2gis.kz/almaty/geo/70000001033934166',                         color: '#8B5CF6', bg: '#F3EFFE', letter: 'А₂', logo: '/images/sadiks/algabas-2.png'  },
