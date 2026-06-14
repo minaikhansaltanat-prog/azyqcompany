@@ -25,29 +25,31 @@ const fadeIn = {
   }),
 };
 
-const PARTNERS = [
-  { name: 'Умка',              url: 'https://2gis.kz/almaty/geo/9429940001035352',                          color: '#5BBF3A', bg: '#EFF9E8', letter: 'У'  },
-  { name: 'Жансая-Сәт',       url: 'https://2gis.kz/almaty/geo/70000001081317293/76.987365,43.352990',     color: '#D84040', bg: '#FEECEC', letter: 'Ж'  },
-  { name: 'Адеми',             url: 'https://2gis.kz/almaty/geo/9429940000791569',                          color: '#F59E0B', bg: '#FEF3C7', letter: 'А'  },
-  { name: 'Күншуақ',           url: 'https://2gis.kz/almaty/geo/9429940000845758',                          color: '#F97316', bg: '#FFF0E6', letter: 'К'  },
-  { name: 'Алгабас 2',         url: 'https://2gis.kz/almaty/geo/70000001033934166',                         color: '#8B5CF6', bg: '#F3EFFE', letter: 'А₂' },
-  { name: 'Алгабас',           url: 'https://2gis.kz/almaty/geo/70000001054519291',                         color: '#3B82F6', bg: '#EFF6FF', letter: 'А'  },
-  { name: 'Изумрудный город',  url: 'https://2gis.kz/almaty/geo/70000001062741292',                         color: '#14B8A6', bg: '#F0FDFA', letter: 'И'  },
-  { name: 'Мир детства',       url: 'https://2gis.kz/almaty/geo/70000001030058930',                         color: '#EC4899', bg: '#FDF2F8', letter: 'М'  },
-  { name: 'Микитоша',          url: 'https://2gis.kz/almaty/geo/70000001031475420/76.850827,43.271614',     color: '#6366F1', bg: '#EEF2FF', letter: 'М'  },
-  { name: 'Дамира',            url: 'https://2gis.kz/almaty/geo/70000001020369904/76.839872,43.276343',     color: '#D84040', bg: '#FEECEC', letter: 'Д'  },
-  { name: 'Гармония',          url: 'https://2gis.kz/almaty/geo/9429940000928950/76.973941,43.216807',      color: '#5BBF3A', bg: '#EFF9E8', letter: 'Г'  },
-  { name: 'Солнечные лучи',    url: 'https://2gis.kz/almaty/geo/9429940001308947/76.969255,43.252131',      color: '#F59E0B', bg: '#FEF3C7', letter: 'С'  },
-  { name: 'Ордоген',           url: 'https://2gis.kz/almaty/geo/70000001056446663/77.021807,43.291633',     color: '#3B82F6', bg: '#EFF6FF', letter: 'О'  },
-  { name: 'Султанкурган',      url: 'https://2gis.kz/almaty/geo/9429940000800824/76.927058,43.316355',      color: '#8B5CF6', bg: '#F3EFFE', letter: 'С'  },
-  { name: 'Вдохновение',       url: 'https://2gis.kz/almaty/geo/70000001034423627/76.952503,43.347403',     color: '#EC4899', bg: '#FDF2F8', letter: 'В'  },
-  { name: 'Солнечные зайки',   url: 'https://2gis.kz/almaty/geo/70000001037283188',                         color: '#F97316', bg: '#FFF0E6', letter: 'С'  },
-  { name: 'Мади Kids',         url: 'https://2gis.kz/almaty/geo/70000001043831325/76.981011,43.252276',     color: '#14B8A6', bg: '#F0FDFA', letter: 'М'  },
-  { name: 'Римон',             url: 'https://2gis.kz/almaty/geo/70000001031499970',                         color: '#6366F1', bg: '#EEF2FF', letter: 'Р'  },
-  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001089006317/76.799492,43.237209',     color: '#5BBF3A', bg: '#EFF9E8', letter: 'С'  },
-  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001023174402/76.789244,43.240576',     color: '#D84040', bg: '#FEECEC', letter: 'С'  },
-  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001033941325/76.785360,43.243263',     color: '#F59E0B', bg: '#FEF3C7', letter: 'С'  },
-] as const;
+type Partner = { name: string; url: string; color: string; bg: string; letter: string; logo?: string };
+
+const PARTNERS: Partner[] = [
+  { name: 'Умка',              url: 'https://2gis.kz/almaty/geo/9429940001035352',                          color: '#5BBF3A', bg: '#EFF9E8', letter: 'У',  logo: '/images/sadiks/umka.jpg'       },
+  { name: 'Жансая-Сәт',       url: 'https://2gis.kz/almaty/geo/70000001081317293/76.987365,43.352990',     color: '#D84040', bg: '#FEECEC', letter: 'Ж'                                          },
+  { name: 'Адеми',             url: 'https://2gis.kz/almaty/geo/9429940000791569',                          color: '#F59E0B', bg: '#FEF3C7', letter: 'А',  logo: '/images/sadiks/ademi.png'      },
+  { name: 'Күншуақ',           url: 'https://2gis.kz/almaty/geo/9429940000845758',                          color: '#F97316', bg: '#FFF0E6', letter: 'К',  logo: '/images/sadiks/kunshuak.png'   },
+  { name: 'Алгабас 2',         url: 'https://2gis.kz/almaty/geo/70000001033934166',                         color: '#8B5CF6', bg: '#F3EFFE', letter: 'А₂', logo: '/images/sadiks/algabas-2.png'  },
+  { name: 'Алгабас',           url: 'https://2gis.kz/almaty/geo/70000001054519291',                         color: '#3B82F6', bg: '#EFF6FF', letter: 'А',  logo: '/images/sadiks/algabas.jpg'    },
+  { name: 'Изумрудный город',  url: 'https://2gis.kz/almaty/geo/70000001062741292',                         color: '#14B8A6', bg: '#F0FDFA', letter: 'И',  logo: '/images/sadiks/izumrudny.jpg'  },
+  { name: 'Мир детства',       url: 'https://2gis.kz/almaty/geo/70000001030058930',                         color: '#EC4899', bg: '#FDF2F8', letter: 'М',  logo: '/images/sadiks/mir-detstva.png'},
+  { name: 'Микитоша',          url: 'https://2gis.kz/almaty/geo/70000001031475420/76.850827,43.271614',     color: '#6366F1', bg: '#EEF2FF', letter: 'М',  logo: '/images/sadiks/mikitosh.png'   },
+  { name: 'Дамира',            url: 'https://2gis.kz/almaty/geo/70000001020369904/76.839872,43.276343',     color: '#D84040', bg: '#FEECEC', letter: 'Д',  logo: '/images/sadiks/damira.png'     },
+  { name: 'Гармония',          url: 'https://2gis.kz/almaty/geo/9429940000928950/76.973941,43.216807',      color: '#5BBF3A', bg: '#EFF9E8', letter: 'Г'                                          },
+  { name: 'Солнечные лучи',    url: 'https://2gis.kz/almaty/geo/9429940001308947/76.969255,43.252131',      color: '#F59E0B', bg: '#FEF3C7', letter: 'С'                                          },
+  { name: 'Ордоген',           url: 'https://2gis.kz/almaty/geo/70000001056446663/77.021807,43.291633',     color: '#3B82F6', bg: '#EFF6FF', letter: 'О'                                          },
+  { name: 'Султанкурган',      url: 'https://2gis.kz/almaty/geo/9429940000800824/76.927058,43.316355',      color: '#8B5CF6', bg: '#F3EFFE', letter: 'С'                                          },
+  { name: 'Вдохновение',       url: 'https://2gis.kz/almaty/geo/70000001034423627/76.952503,43.347403',     color: '#EC4899', bg: '#FDF2F8', letter: 'В'                                          },
+  { name: 'Солнечные зайки',   url: 'https://2gis.kz/almaty/geo/70000001037283188',                         color: '#F97316', bg: '#FFF0E6', letter: 'С'                                          },
+  { name: 'Мади Kids',         url: 'https://2gis.kz/almaty/geo/70000001043831325/76.981011,43.252276',     color: '#14B8A6', bg: '#F0FDFA', letter: 'М'                                          },
+  { name: 'Римон',             url: 'https://2gis.kz/almaty/geo/70000001031499970',                         color: '#6366F1', bg: '#EEF2FF', letter: 'Р'                                          },
+  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001089006317/76.799492,43.237209',     color: '#5BBF3A', bg: '#EFF9E8', letter: 'С'                                          },
+  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001023174402/76.789244,43.240576',     color: '#D84040', bg: '#FEECEC', letter: 'С'                                          },
+  { name: 'Сания',             url: 'https://2gis.kz/almaty/geo/70000001033941325/76.785360,43.243263',     color: '#F59E0B', bg: '#FEF3C7', letter: 'С'                                          },
+];
 
 const KUNSHUAK_REVIEW = `С компанией-поставщиком продуктов питания сотрудничаем уже более 5 лет. За время работы зарекомендовали себя как надёжный и ответственный партнёр.
 
@@ -746,13 +748,25 @@ export default function Home() {
                 className="group flex flex-col items-center gap-2.5 rounded-2xl border border-brand-border bg-white p-3 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-card"
                 style={{ ['--hover-color' as string]: p.color }}
               >
-                {/* Avatar */}
-                <div
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-base font-black text-white shadow-sm transition-transform duration-200 group-hover:scale-105"
-                  style={{ backgroundColor: p.color }}
-                >
-                  {p.letter}
-                </div>
+                {/* Logo or letter avatar */}
+                {p.logo ? (
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl overflow-hidden bg-white border border-brand-border shadow-sm transition-transform duration-200 group-hover:scale-105">
+                    <Image
+                      src={p.logo}
+                      alt={p.name}
+                      width={48}
+                      height={48}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-base font-black text-white shadow-sm transition-transform duration-200 group-hover:scale-105"
+                    style={{ backgroundColor: p.color }}
+                  >
+                    {p.letter}
+                  </div>
+                )}
                 {/* Name */}
                 <p className="text-[11px] font-bold leading-tight text-brand-dark line-clamp-2">
                   {p.name}
