@@ -258,7 +258,7 @@ export default function Home() {
             >
               <div className="relative overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/ff.png"
+                  src="/images/team/aaa.png"
                   alt="AZYQ миссия"
                   width={1254}
                   height={1254}
