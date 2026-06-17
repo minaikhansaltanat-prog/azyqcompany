@@ -185,26 +185,9 @@ button:focus-visible, a:focus-visible {
   transform-origin: center;
 }
 
-/* ── REVIEWS CAROUSEL ── */
-.reviews-carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  overflow-y: visible;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding: 12px 4px 28px;
-  cursor: grab;
-  user-select: none;
-}
-.reviews-carousel::-webkit-scrollbar { display: none; }
-.reviews-carousel.is-dragging { cursor: grabbing; }
-
+/* ── REVIEW CARD ── */
 .review-card {
-  flex: 0 0 min(320px, 82vw);
-  scroll-snap-align: start;
+  width: 100%;
   max-height: 280px;
   overflow: hidden;
   position: relative;

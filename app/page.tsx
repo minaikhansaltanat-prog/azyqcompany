@@ -7,6 +7,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { useTranslations } from '@/components/useTranslations';
 import AudioPlayer from '@/components/AudioPlayer';
+import { InfiniteCarousel } from '@/components/InfiniteCarousel';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -63,6 +64,14 @@ const UMKA_REVIEW = `Хотим выразить благодарность ко
 
 С уважением, коллектив детского сада «УМКА» на Хан Тенгри`;
 
+const PANDA_REVIEW = `С удовольствием сотрудничаем с Azyq Company.
+
+Продукты всегда доставляются вовремя, отличаются свежестью и высоким качеством. Очень приятно работать с ответственными и добросовестными поставщиками, которые внимательно относятся к своим клиентам и всегда готовы помочь в решении любых вопросов.
+
+Для нашего детского сада качество продуктов особенно важно, и за всё время сотрудничества компания зарекомендовала себя как надежный партнер. Благодарим за профессионализм, стабильность и отличный сервис.
+
+С уважением, администрация детского сада «Панда»`;
+
 export default function Home() {
   const t = useTranslations();
   const [formData, setFormData] = useState({ name: '', phone: '', kindergarten: '' });
@@ -70,12 +79,6 @@ export default function Home() {
   const [testimonialsTab, setTestimonialsTab] = useState<'video' | 'written' | 'audio' | '2gis'>('video');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState<{ text: string; name: string; title: string } | null>(null);
-
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const dragStartX = useRef(0);
-  const dragScrollLeft = useRef(0);
-  const hasDragged = useRef(false);
 
   const openModal = (data: { text: string; name: string; title: string }) => {
     setModalData(data);
@@ -94,24 +97,6 @@ export default function Home() {
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
-
-  const onCarouselMD = (e: React.MouseEvent<HTMLDivElement>) => {
-    isDragging.current = true;
-    hasDragged.current = false;
-    dragStartX.current = e.clientX;
-    dragScrollLeft.current = carouselRef.current?.scrollLeft ?? 0;
-  };
-  const onCarouselMU = () => {
-    isDragging.current = false;
-    setTimeout(() => { hasDragged.current = false; }, 80);
-  };
-  const onCarouselML = () => { isDragging.current = false; };
-  const onCarouselMM = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging.current || !carouselRef.current) return;
-    const dx = e.clientX - dragStartX.current;
-    if (Math.abs(dx) > 5) hasDragged.current = true;
-    carouselRef.current.scrollLeft = dragScrollLeft.current - dx * 1.2;
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -678,7 +663,7 @@ export default function Home() {
             </motion.p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {t.team.members.map((member, i) => (
               <motion.div
                 key={i}
@@ -689,10 +674,22 @@ export default function Home() {
                 variants={fadeUp}
                 className="card text-center"
               >
-                {/* Avatar placeholder */}
-                <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-green-dark text-3xl font-black text-white shadow-green">
-                  {member.initials}
-                </div>
+                {/* Photo or initials avatar */}
+                {member.photo ? (
+                  <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full shadow-green border-2 border-white">
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      width={80}
+                      height={80}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-green-dark text-3xl font-black text-white shadow-green">
+                    {member.initials}
+                  </div>
+                )}
                 <h3 className="mb-1 font-extrabold text-brand-dark">{member.name}</h3>
                 <p className="text-xs leading-snug text-brand-gray">{member.role}</p>
               </motion.div>
@@ -844,155 +841,162 @@ export default function Home() {
 
           {/* ── VIDEO TAB ── */}
           {testimonialsTab === 'video' && (
-            <div className="grid gap-5 md:grid-cols-3">
-              {/* Real video — otzyv1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0 }}
-                className="overflow-hidden rounded-3xl bg-white shadow-card hover:shadow-card-hover transition-all duration-300"
-              >
-                <div className="overflow-hidden rounded-t-3xl bg-black">
-                  <video
-                    src={`${BASE_PATH}/videos/otzyv1.mp4`}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    style={{ width: '100%', display: 'block', borderRadius: 0 }}
-                  />
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-green text-white font-bold text-sm">
-                      У
-                    </div>
-                    <div>
-                      <p className="font-extrabold text-brand-dark text-sm">«Умка» балабақшасы</p>
-                      <p className="text-xs text-brand-muted italic">Алматы қаласы</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Placeholder cards */}
-              {t.testimonials.videoItems.slice(0, 2).map((item, i) => (
+            <InfiniteCarousel
+              cardWidth="min(360px, 86vw)"
+              items={[
                 <motion.div
-                  key={i}
+                  key="otzyv1"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: (i + 1) * 0.1 }}
-                  className="group cursor-pointer overflow-hidden rounded-3xl bg-white shadow-card hover:shadow-card-hover transition-all duration-300"
+                  transition={{ duration: 0.4, delay: 0 }}
+                  className="overflow-hidden rounded-3xl bg-white shadow-card hover:shadow-card-hover transition-all duration-300"
                 >
-                  <div
-                    className={`relative flex h-48 items-center justify-center ${
-                      item.color === 'green'
-                        ? 'bg-gradient-to-br from-brand-green to-brand-green-dark'
-                        : 'bg-gradient-to-br from-brand-red to-brand-red-dark'
-                    }`}
-                  >
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white" />
-                      <div className="absolute -left-4 -bottom-4 h-20 w-20 rounded-full bg-white" />
-                    </div>
-                    <span className="absolute bottom-3 left-4 text-xs font-black text-white/40 tracking-widest uppercase">azyq</span>
-                    <span className="absolute top-3 right-3 rounded-lg bg-black/40 px-2 py-0.5 text-xs font-bold text-white">
-                      {item.duration}
-                    </span>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/50 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
+                  <div className="overflow-hidden rounded-t-3xl bg-black">
+                    <video
+                      src={`${BASE_PATH}/videos/otzyv1.mp4`}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      style={{ width: '100%', display: 'block', borderRadius: 0 }}
+                    />
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-3">
-                      <div
-                        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-white font-bold text-sm ${
-                          item.color === 'green' ? 'bg-brand-green' : 'bg-brand-red'
-                        }`}
-                      >
-                        {item.name[0]}
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-green text-white font-bold text-sm">
+                        У
                       </div>
                       <div>
-                        <p className="font-extrabold text-brand-dark text-sm">{item.name}</p>
-                        <p className="text-xs text-brand-muted">{item.role}</p>
+                        <p className="font-extrabold text-brand-dark text-sm">«Умка» балабақшасы</p>
+                        <p className="text-xs text-brand-muted italic">Алматы қаласы</p>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </motion.div>,
+                ...t.testimonials.videoItems.slice(0, 2).map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: (i + 1) * 0.1 }}
+                    className="group cursor-pointer overflow-hidden rounded-3xl bg-white shadow-card hover:shadow-card-hover transition-all duration-300"
+                  >
+                    <div
+                      className={`relative flex h-48 items-center justify-center ${
+                        item.color === 'green'
+                          ? 'bg-gradient-to-br from-brand-green to-brand-green-dark'
+                          : 'bg-gradient-to-br from-brand-red to-brand-red-dark'
+                      }`}
+                    >
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white" />
+                        <div className="absolute -left-4 -bottom-4 h-20 w-20 rounded-full bg-white" />
+                      </div>
+                      <span className="absolute bottom-3 left-4 text-xs font-black text-white/40 tracking-widest uppercase">azyq</span>
+                      <span className="absolute top-3 right-3 rounded-lg bg-black/40 px-2 py-0.5 text-xs font-bold text-white">
+                        {item.duration}
+                      </span>
+                      <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/50 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-white font-bold text-sm ${
+                            item.color === 'green' ? 'bg-brand-green' : 'bg-brand-red'
+                          }`}
+                        >
+                          {item.name[0]}
+                        </div>
+                        <div>
+                          <p className="font-extrabold text-brand-dark text-sm">{item.name}</p>
+                          <p className="text-xs text-brand-muted">{item.role}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )),
+              ]}
+            />
           )}
 
           {/* ── WRITTEN TAB ── */}
           {testimonialsTab === 'written' && (
-            <div
-              ref={carouselRef}
-              className="reviews-carousel"
-              onMouseDown={onCarouselMD}
-              onMouseUp={onCarouselMU}
-              onMouseLeave={onCarouselML}
-              onMouseMove={onCarouselMM}
-            >
-              {/* Text review cards */}
-              {t.testimonials.writtenItems.map((item, i) => (
-                <div
-                  key={i}
-                  className="review-card rounded-2xl bg-white p-5 shadow-card border border-brand-border"
-                  onClick={() => { if (hasDragged.current) return; openModal({ text: item.quote, name: item.name, title: item.role }); }}
-                >
-                  <div className="absolute -top-3 left-5 flex h-8 w-8 items-center justify-center rounded-full bg-brand-green text-white text-lg font-black shadow-green select-none">
-                    "
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-gray italic">«{item.quote}»</p>
-                  <div className="mt-4 flex items-center gap-3 border-t border-brand-border pt-3">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-brand-green-light text-brand-green-dark font-bold text-sm">
-                      {item.name[0]}
+            <InfiniteCarousel
+              items={[
+                ...t.testimonials.writtenItems.map((item, i) => (
+                  <div
+                    key={`text-${i}`}
+                    className="review-card rounded-2xl bg-white p-5 shadow-card border border-brand-border"
+                    onClick={() => openModal({ text: item.quote, name: item.name, title: item.role })}
+                  >
+                    <div className="absolute -top-3 left-5 flex h-8 w-8 items-center justify-center rounded-full bg-brand-green text-white text-lg font-black shadow-green select-none">
+                      "
                     </div>
-                    <div>
-                      <p className="text-sm font-extrabold text-brand-dark leading-tight">{item.name}</p>
-                      <p className="text-xs text-brand-muted">{item.role}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-gray italic">«{item.quote}»</p>
+                    <div className="mt-4 flex items-center gap-3 border-t border-brand-border pt-3">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-brand-green-light text-brand-green-dark font-bold text-sm">
+                        {item.name[0]}
+                      </div>
+                      <div>
+                        <p className="text-sm font-extrabold text-brand-dark leading-tight">{item.name}</p>
+                        <p className="text-xs text-brand-muted">{item.role}</p>
+                      </div>
                     </div>
+                    <div className="review-read-more">Толық оқу ↗</div>
                   </div>
-                  <div className="review-read-more">Толық оқу ↗</div>
-                </div>
-              ))}
-
-              {/* WhatsApp screenshot cards — Умка */}
-              {['/images/t1.jpg', '/images/t2.jpg'].map((src, i) => (
+                )),
+                ...['/images/t1.jpg', '/images/t2.jpg'].map((src, i) => (
+                  <div
+                    key={`umka-${i}`}
+                    className="review-card review-card-screenshot border border-brand-border shadow-card"
+                    style={{ height: 280 }}
+                    onClick={() => openModal({ text: UMKA_REVIEW, name: '«Умка» балабақшасы', title: '«Умка» балабақшасының директоры' })}
+                  >
+                    <Image
+                      src={src}
+                      alt="«Умка» балабақшасы пікірі"
+                      fill
+                      className="object-cover object-top"
+                      sizes="320px"
+                    />
+                    <div className="review-read-more">Толық оқу ↗</div>
+                  </div>
+                )),
                 <div
-                  key={`umka-${i}`}
+                  key="kunshuak"
                   className="review-card review-card-screenshot border border-brand-border shadow-card"
                   style={{ height: 280 }}
-                  onClick={() => { if (hasDragged.current) return; openModal({ text: UMKA_REVIEW, name: '«Умка» балабақшасы', title: '«Умка» балабақшасының директоры' }); }}
+                  onClick={() => openModal({ text: KUNSHUAK_REVIEW, name: '«Күншуақ Садик» балабақшасы', title: 'Галина, «Күншуақ Садик» балабақшасының директоры' })}
                 >
                   <Image
-                    src={src}
-                    alt="«Умка» балабақшасы пікірі"
+                    src="/images/02.jpg"
+                    alt="«Күншуақ Садик» балабақшасы пікірі"
                     fill
                     className="object-cover object-top"
                     sizes="320px"
                   />
                   <div className="review-read-more">Толық оқу ↗</div>
-                </div>
-              ))}
-
-              {/* WhatsApp screenshot card — Күншуақ Садик */}
-              <div
-                className="review-card review-card-screenshot border border-brand-border shadow-card"
-                style={{ height: 280 }}
-                onClick={() => { if (hasDragged.current) return; openModal({ text: KUNSHUAK_REVIEW, name: '«Күншуақ Садик» балабақшасы', title: 'Галина, «Күншуақ Садик» балабақшасының директоры' }); }}
-              >
-                <Image
-                  src="/images/02.jpg"
-                  alt="«Күншуақ Садик» балабақшасы пікірі"
-                  fill
-                  className="object-cover object-top"
-                  sizes="320px"
-                />
-                <div className="review-read-more">Толық оқу ↗</div>
-              </div>
-            </div>
+                </div>,
+                <div
+                  key="panda"
+                  className="review-card review-card-screenshot border border-brand-border shadow-card"
+                  style={{ height: 280 }}
+                  onClick={() => openModal({ text: PANDA_REVIEW, name: '«Панда» балабақшасы', title: '«Панда» балабақшасының әкімшілігі' })}
+                >
+                  <Image
+                    src="/images/0011.jpeg"
+                    alt="«Панда» балабақшасы пікірі"
+                    fill
+                    className="object-cover object-top"
+                    sizes="320px"
+                  />
+                  <div className="review-read-more">Толық оқу ↗</div>
+                </div>,
+              ]}
+            />
           )}
 
           {/* ── 2GIS TAB ── */}
@@ -1056,8 +1060,9 @@ export default function Home() {
 
           {/* ── AUDIO TAB ── */}
           {testimonialsTab === 'audio' && (
-            <div className="grid gap-5 md:grid-cols-3">
-              {t.testimonials.audioItems.map((item, i) => (
+            <InfiniteCarousel
+              cardWidth="min(340px, 86vw)"
+              items={t.testimonials.audioItems.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -1072,7 +1077,7 @@ export default function Home() {
                   />
                 </motion.div>
               ))}
-            </div>
+            />
           )}
         </div>
       </section>
