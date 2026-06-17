@@ -76,7 +76,7 @@ export default function Home() {
   const t = useTranslations();
   const [formData, setFormData] = useState({ name: '', phone: '', kindergarten: '' });
   const [submitted, setSubmitted] = useState(false);
-  const [testimonialsTab, setTestimonialsTab] = useState<'video' | 'written' | 'audio' | '2gis'>('video');
+  const [testimonialsTab, setTestimonialsTab] = useState<'video' | 'written' | 'audio' | '2gis'>('written');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState<{ text: string; name: string; title: string } | null>(null);
 
@@ -816,9 +816,9 @@ export default function Home() {
               <div className="inline-flex min-w-max rounded-2xl bg-white p-1.5 shadow-card gap-1 mx-auto">
                 {(
                   [
-                    { key: 'video', icon: '🎥', label: t.testimonials.tabVideo },
                     { key: 'written', icon: '✍️', label: t.testimonials.tabWritten },
                     { key: 'audio', icon: '🎤', label: t.testimonials.tabAudio },
+                    { key: 'video', icon: '🎥', label: t.testimonials.tabVideo },
                     { key: '2gis', icon: '📍', label: '2GIS' },
                   ] as const
                 ).map((tab) => (
