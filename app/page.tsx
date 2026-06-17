@@ -926,28 +926,6 @@ export default function Home() {
           {testimonialsTab === 'written' && (
             <InfiniteCarousel
               items={[
-                ...t.testimonials.writtenItems.map((item, i) => (
-                  <div
-                    key={`text-${i}`}
-                    className="review-card rounded-2xl bg-white p-5 shadow-card border border-brand-border"
-                    onClick={() => openModal({ text: item.quote, name: item.name, title: item.role })}
-                  >
-                    <div className="absolute -top-3 left-5 flex h-8 w-8 items-center justify-center rounded-full bg-brand-green text-white text-lg font-black shadow-green select-none">
-                      "
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-brand-gray italic">«{item.quote}»</p>
-                    <div className="mt-4 flex items-center gap-3 border-t border-brand-border pt-3">
-                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-brand-green-light text-brand-green-dark font-bold text-sm">
-                        {item.name[0]}
-                      </div>
-                      <div>
-                        <p className="text-sm font-extrabold text-brand-dark leading-tight">{item.name}</p>
-                        <p className="text-xs text-brand-muted">{item.role}</p>
-                      </div>
-                    </div>
-                    <div className="review-read-more">Толық оқу ↗</div>
-                  </div>
-                )),
                 ...['/images/t1.jpg', '/images/t2.jpg'].map((src, i) => (
                   <div
                     key={`umka-${i}`}
