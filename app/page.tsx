@@ -256,7 +256,7 @@ export default function Home() {
               variants={fadeUp}
               className="order-2 lg:order-1"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl sm:aspect-square">
+              <div className="relative aspect-[849/963] overflow-hidden rounded-3xl">
                 <Image
                   src="/images/team/aaa.png"
                   alt="AZYQ миссия"
