@@ -256,13 +256,13 @@ export default function Home() {
               variants={fadeUp}
               className="order-2 lg:order-1"
             >
-              <div className="relative overflow-hidden rounded-3xl">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl sm:aspect-square">
                 <Image
                   src="/images/team/aaa.png"
                   alt="AZYQ миссия"
-                  width={1254}
-                  height={1254}
-                  className="h-auto w-full object-cover"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover object-top"
                 />
               </div>
             </motion.div>
@@ -682,7 +682,7 @@ export default function Home() {
                       alt={member.name}
                       width={80}
                       height={80}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover object-top"
                     />
                   </div>
                 ) : (
